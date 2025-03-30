@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+  
+  /* 
+     El body no necesita un background negro porque 
+     la .main-container ya lo gestiona,
+     pero si lo deseas, puedes dejarlo:
+  */
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+  
+  /* ----- Contenedor principal a pantalla completa ----- */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+  
+  /* 
+     Capa para la imagen de fondo.
+     Por defecto está con opacity: 0,
+     y al hacer hover sobre un item, subimos la opacidad.
+  */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background-blend-mode: multiply;
+    /* 
+       Si quieres que siempre haya un velo oscuro encima de la imagen, 
+       puedes usar background-blend-mode o un pseudo-elemento con background: rgba(0,0,0,0.5).
+    */
+  }
+  
+  /* 
+     Contenedor para los textos.
+     Ajusta su posición según dónde quieras que aparezcan:
+     - bottom: 0 => en la parte inferior
+     - top: 0   => en la parte superior
+     - center   => centrado
+  */
+.text-row {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem;
+    gap: 2rem;
+    color: white;
+    z-index: 2; /* Por encima de .background */
+}
+  
+  /* Cada bloque de texto */
+.item {
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    opacity: 1;
+}
+  
+  /* Ajustes de tipografía */
+.item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.item p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.text-row h2:hover .item:not(:hover) {
+    opacity: 0.5;
+}
+
+  /* El item en hover se mantiene con opacidad normal */
+.item:hover {
+    opacity: 1;
+}
+
+  /* Responsivo: Ajuste para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .item h2 {
+        font-size: 1.2rem;
+    }
+    .item p {
+        font-size: 0.9rem;
+    }
+}
