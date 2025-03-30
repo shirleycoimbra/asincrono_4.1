@@ -3,33 +3,23 @@
     margin: 0;
     padding: 0;
 }
-  
-  /* 
-     El body no necesita un background negro porque 
-     la .main-container ya lo gestiona,
-     pero si lo deseas, puedes dejarlo:
-  */
+
 html, body {
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
     background-color: black;
 }
-  
-  /* ----- Contenedor principal a pantalla completa ----- */
+
+/* Contenedor principal */
 .main-container {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     background-color: black;
 }
-  
-  /* 
-     Capa para la imagen de fondo.
-     Por defecto está con opacity: 0,
-     y al hacer hover sobre un item, subimos la opacidad.
-  */
+
+/* Fondo con imagen */
 .background {
     position: absolute;
     top: 0;
@@ -40,66 +30,118 @@ html, body {
     background-size: cover;
     opacity: 0;
     transition: opacity 0.5s ease;
-    background-blend-mode: multiply;
-    /* 
-       Si quieres que siempre haya un velo oscuro encima de la imagen, 
-       puedes usar background-blend-mode o un pseudo-elemento con background: rgba(0,0,0,0.5).
-    */
-  }
-  
-  /* 
-     Contenedor para los textos.
-     Ajusta su posición según dónde quieras que aparezcan:
-     - bottom: 0 => en la parte inferior
-     - top: 0   => en la parte superior
-     - center   => centrado
-  */
+}
+
+/* Contenedor para los textos */
 .text-row {
     position: absolute;
-    width: 100%;
+    top: 20%;
+    left: 10%;
+    transform: translate(3%, -5%);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    margin: 2rem;
-    gap: 2rem;
+    text-align: center;
+    gap: 1.5rem;
     color: white;
-    z-index: 2; /* Por encima de .background */
+    z-index: 2; 
+    width: 80%;
 }
-  
-  /* Cada bloque de texto */
+
+/* Cada bloque de texto */
 .item {
     cursor: pointer;
-    text-align: center;
+    align-items: end;
     display: flex;
-    opacity: 1;
+    justify-content: flex-end;
 }
-  
-  /* Ajustes de tipografía */
+
+/* Ajustes de tipografía */
 .item h2 {
-    font-size: 1.5rem;
+    font-size: 6rem;
     margin-bottom: 0.2rem;
 }
 
 .item p {
     font-size: 1rem;
     color: #ccc;
+    padding: 1rem;
 }
 
-.text-row h2:hover .item:not(:hover) {
+.text-row:hover .item h2:not(:hover) {
     opacity: 0.5;
 }
 
-  /* El item en hover se mantiene con opacidad normal */
-.item:hover {
+/* El item en hover se mantiene con opacidad normal */
+.item h2:hover {
     opacity: 1;
 }
 
-  /* Responsivo: Ajuste para pantallas más pequeñas */
+@media (max-width: 1200px) {
+    .text-row {
+        width: 90%;
+    }
+
+    .item h2 {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .text-row {
+        display: flex;
+        flex-direction: row;
+    }
+    .item h2 {
+        font-size: 3.2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .text-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .item h2 {
+        font-size: 3rem;
+    }
+
+    .item p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .text-row {
+        display: flex;
+        flex-direction: row;
+        margin-right: 10rem;
+        padding: 2rem;
+    }
+
+    .item h2 {
+        font-size: 1.8rem;
+    }
+
+    .item p {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+}
+@media (max-width: 376px) {
+    .text-row {
+        display: flex;
+        flex-direction: row;
+        margin-right: 10rem;
+        padding: 1rem;
+    }
+
     .item h2 {
         font-size: 1.2rem;
     }
+
     .item p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        padding: 0.5rem;
     }
 }
